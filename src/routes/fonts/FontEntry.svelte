@@ -7,7 +7,7 @@
 		CardHeader,
 		CardTitle,
 	} from "$lib/components/ui/card";
-	import { fontSentence } from "$lib/state";
+	import { fontSentence } from "$lib/state.svelte";
 	import type { Font } from "@kulupu-linku/sona";
 	import { flyAndScale } from "$lib/utils";
 	import IntersectionObserver from "svelte-intersection-observer";

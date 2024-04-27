@@ -5,7 +5,7 @@
 
 	import { browser } from "$app/environment";
 	import { page } from "$app/stores";
-	import { searchQuery, writingSystem } from "$lib/state";
+	import { searchQuery, writingSystem } from "$lib/state.svelte";
 	import { cn } from "$lib/utils";
 
 	import { pushState } from "$app/navigation";

@@ -12,7 +12,7 @@
 		etymologiesEnabled,
 		searchQuery,
 		writingSystem,
-	} from "$lib/state";
+	} from "$lib/state.svelte";
 	import { cn, keys } from "$lib/utils";
 
 	import { pushState } from "$app/navigation";

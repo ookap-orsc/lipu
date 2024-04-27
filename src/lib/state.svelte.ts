@@ -1,8 +1,26 @@
 import { browser } from "$app/environment";
 import type { UsageCategory } from "@kulupu-linku/sona/utils";
-import { persisted, type Serializer } from "svelte-persisted-store/dist/index.mjs";
+// import { persisted, type Serializer } from "svelte-persisted-store/dist/index.mjs";
 import { writable } from "svelte/store";
 import { entries, fromEntries } from "$lib/utils";
+
+const persisted = <T>(
+	key: string,
+	initialValue?: T,
+	options?: { parse: (val: string) => T; stringify: (val: T) => string },
+) => {
+	const {
+		parse = (val: string) => JSON.parse(val) as T,
+		stringify = (val: T) => JSON.stringify(val),
+	} = options ?? {};
+	let value = $state(browser ? parse(localStorage.getItem(key) ?? ) : initialValue);
+
+	$effect(() => {
+		if (browser) {
+			localStorage.setItem(key, stringify(value));
+		}
+	});
+};
 
 export const searchQuery = writable(
 	browser ? new URLSearchParams(window.location.search).get("q") ?? "" : "",

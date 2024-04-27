@@ -3,7 +3,7 @@
 
 	import { page } from "$app/stores";
 	import { wordSearch } from "$lib/components/search";
-	import { searchQuery } from "$lib/state";
+	import { searchQuery } from "$lib/state.svelte";
 	import logo from "$lib/assets/icon.png?url";
 
 	export let data;

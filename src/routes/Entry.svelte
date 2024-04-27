@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { writingSystem, etymologiesEnabled } from "$lib/state";
+	import { writingSystem, etymologiesEnabled } from "$lib/state.svelte";
 	import type { Language, LocalizedWord } from "@kulupu-linku/sona";
 	import { getTranslatedData, type UsageCategory } from "@kulupu-linku/sona/utils";
 
@@ -12,12 +12,16 @@
 		CardTitle,
 	} from "$lib/components/ui/card";
 
-	export let word: LocalizedWord;
-	export let language: Language;
+	type Props = {
+		word: LocalizedWord;
+		language: Language;
+	};
 
-	$: definition = getTranslatedData(word, "definition", language.id);
-	$: etymology = getTranslatedData(word, "etymology", language.id);
-	$: usageScore = Object.values(word.usage).at(-1) ?? 0;
+	const { word, language }: Props = $props();
+
+	const definition = $derived(getTranslatedData(word, "definition", language.id));
+	const etymology = $derived(getTranslatedData(word, "etymology", language.id));
+	const usageScore = $derived(Object.values(word.usage).at(-1) ?? 0);
 
 	const categoryColors = {
 		core: "oklch(93.29% 0.137 106.54)",
